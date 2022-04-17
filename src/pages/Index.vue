@@ -1,17 +1,25 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+     <p v-if="user">
+        {{ user.user_metadata.name }}
+     </p>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
+import useAuthUser from 'src/composables/userAuthApi'
+
 export default defineComponent({
-  name: 'PageIndex'
+  name: 'PageIndex',
+  setup () {
+     
+     const {user} = useAuthUser()
+
+     return {
+       user
+     }
+  }
 })
 </script>
